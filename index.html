@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio To-Do List - Pure CSS</title>
+    <link rel="stylesheet" href="Style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="todo-container">
+        <header>
+            <h1>Gerenciador de Tarefas</h1>
+        </header>
+
+        <main>
+            <section class="todo-input-section" aria-labelledby="input-heading">
+                <h2 id="input-heading" class="sr-only">Adicionar Nova Tarefa</h2>
+                
+                <form class="todo-form">
+                    <div class="field-group">
+                        <label for="task-text">O que precisa ser feito?</label>
+                        <input type="text" id="task-text" name="task-text" placeholder="Ex: Estudar Web Semântica" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="task-priority">Prioridade:</label>
+                        <select id="task-priority" name="task-priority">
+                            <option value="baixa">Baixa</option>
+                            <option value="media" selected>Média</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-add">Adicionar</button>
+                </form>
+            </section>
+
+            <hr>
+
+            <section class="todo-list-section" aria-labelledby="list-heading">
+                <h2 id="list-heading">Minhas Tarefas</h2>
+                
+                <ul class="task-list">
+                    <li class="task-item priority-alta">
+                        <input type="checkbox" id="task-01">
+                        <label for="task-01">
+                            <span class="task-content">Finalizar esqueleto HTML</span>
+                            <span class="badge-priority">Alta</span>
+                        </label>
+                        <button type="button" class="btn-delete" aria-label="Excluir tarefa">&times;</button>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 - Desafio de Desenvolvimento Frontend</p>
+        </footer>
+    </div>
+
+</body>
+</html>
