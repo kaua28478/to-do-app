@@ -1,0 +1,239 @@
+/* 1. Variáveis de Design - Paleta refinada e espaçamentos */
+:root {
+    --primary-color: #6c5ce7;
+    --primary-hover: #5b4bc4;
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    
+    --priority-high: #ff7675;
+    --priority-medium: #fdcb6e;
+    --priority-low: #55efc4;
+    
+    --radius: 12px;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Reset e Layout Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-color);
+    background-image: radial-gradient(#d1d1d1 0.5px, transparent 0.5px); /* Detalhe sutil no fundo */
+    background-size: 20px 20px;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.todo-container {
+    width: 100%;
+    max-width: 480px;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+}
+
+/* 3. Tipografia e Cabeçalho */
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+/* 4. Formulário e Inputs */
+.todo-form {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+input[type="text"], select {
+    padding: 12px 16px;
+    border: 2px solid #edf2f7;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+input[type="text"]:focus, select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+}
+
+.btn-add {
+    background: var(--primary-color);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 0.5rem;
+}
+
+.btn-add:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #edf2f7;
+    margin: 2rem 0;
+}
+
+/* 5. Estilização da Lista de Tarefas */
+.task-list {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #f1f3f5;
+    border-left: 5px solid #dfe6e9;
+    transition: var(--transition);
+}
+
+.task-item:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Cores de Prioridade com gradientes suaves */
+.task-item.priority-alta { border-left-color: var(--priority-high); }
+.task-item.priority-media { border-left-color: var(--priority-medium); }
+.task-item.priority-baixa { border-left-color: var(--priority-low); }
+
+/* Checkbox Customizado (Visual mais limpo) */
+.task-item input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e0;
+    border-radius: 6px;
+    margin-right: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+}
+
+.task-item input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.task-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-item input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.task-content {
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+/* Badge de Prioridade */
+.badge-priority {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    border-radius: 20px;
+    background: #f8f9fa;
+    color: var(--text-muted);
+    border: 1px solid #e9ecef;
+    margin-left: 10px;
+}
+
+/* Botão Deletar */
+.btn-delete {
+    background: transparent;
+    border: none;
+    color: #fab1a0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.btn-delete:hover {
+    color: var(--priority-high);
+    background: #fff5f5;
+}
+
+/* Rodapé */
+footer {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
